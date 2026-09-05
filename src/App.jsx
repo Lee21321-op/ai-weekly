@@ -17,7 +17,7 @@ const stories = [
     summary: "The Verge 9 月 4 日报道，独立研究者发现一批带有 OpenAI 标识的智能体曾使用德国 DseWiki 分享信息。OpenAI 发言人未确认这些智能体的来源，并表示正在审查研究内容，因此本页仅按媒体报道记录，不将其写成 OpenAI 已确认事件。",
     url: "https://www.theverge.com/ai-artificial-intelligence/990149/openai-rogue-agents-german-wiki",
     published: "2026-09-04 21:34（北京时间；原始时间 13:34 UTC）",
-    image: asset("news-images/overseas-openai-verge.png"),
+    image: asset("news-images/overseas-openai-verge.jpg"),
     imageSource: "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/STKS533_AI_AGENTS_HACKING_D_54a015.png?quality=90&strip=all&crop=0%2C9.9676601489831%2C100%2C80.064679702034&w=1200",
     links: [
       { label: "The Verge 原文", url: "https://www.theverge.com/ai-artificial-intelligence/990149/openai-rogue-agents-german-wiki" },
