@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowSquareOut, Check, MagnifyingGlass, X } from "@phosphor-icons/react";
-import { createStories } from "./stories";
+import { createStories, edition } from "./stories";
 
 const channels = ["全部", "国内", "海外"];
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
@@ -26,23 +26,23 @@ export function App() {
     <main className={`app-shell ${panelOpen ? "" : "panel-closed"}`}>
       <aside className="sidebar">
         <header className="brand"><div className="brand-mark">AI</div><div><h1>AI 信号</h1><p>精选资讯 · 核验优先</p></div></header>
-        <div className="edition-card"><span>9 月 12 日精选</span><strong>2026.09.12</strong><p>8 条 · 国内 4 / 海外 4</p></div>
+        <div className="edition-card"><span>{edition.label}精选</span><strong>{edition.displayDate}</strong><p>8 条 · 国内 4 / 海外 4</p></div>
         <section className="coverage"><h2>本期来源构成</h2><button className={activeChannel === "国内" ? "active" : ""} onClick={() => setActiveChannel(activeChannel === "国内" ? "全部" : "国内")}><span>国内来源 🇨🇳</span><b>4</b></button><button className={activeChannel === "海外" ? "active" : ""} onClick={() => setActiveChannel(activeChannel === "海外" ? "全部" : "海外")}><span>海外来源 🌍</span><b>4</b></button></section>
-        <section className="coverage-chain"><h2>渠道覆盖</h2><p>国内：IT之家 · 一手研究</p><p>海外：TechCrunch · The Verge</p><p>核验：OpenAI · Apple · Anthropic</p></section>
-        <div className="side-meta"><p>内容截止</p><strong>2026-09-12 15:10</strong><span>北京时间 · 当日滚动截面</span></div>
+        <section className="coverage-chain"><h2>渠道覆盖</h2><p>{edition.domesticSources}</p><p>{edition.overseasSources}</p><p>{edition.verificationSources}</p></section>
+        <div className="side-meta"><p>内容截止</p><strong>{edition.cutoff}</strong><span>北京时间 · 完整日版</span></div>
       </aside>
 
       <section className="workspace">
         <header className="toolbar">
           <label className="searchbox"><MagnifyingGlass size={19} /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="搜索资讯、公司或关键词" /></label>
-          <div className="freshness"><i /><span><b>2026-09-12</b> 精选版</span></div>
+          <div className="freshness"><i /><span><b>{edition.isoDate}</b> 精选版</span></div>
         </header>
         <div className="channel-strip">{channels.map((channel) => <button key={channel} className={activeChannel === channel ? "active" : ""} onClick={() => setActiveChannel(channel)}>{channel}</button>)}</div>
         <div className="feed-head"><span>北京时间</span><span>精选资讯</span><span>{filtered.length} 条结果</span></div>
         <div className="feed" role="list">
           {filtered.length ? filtered.map((story) => (
             <article role="listitem" tabIndex="0" key={story.id} onClick={() => openStory(story.id)} onKeyDown={(e) => e.key === "Enter" && openStory(story.id)} className={`story-row ${panelOpen && selected.id === story.id ? "selected" : ""}`}>
-              <time><b>09-12</b><span>{story.time}</span></time><span className="story-dot" />
+              <time><b>{edition.shortDate}</b><span>{story.time}</span></time><span className="story-dot" />
               <img src={story.image} alt={`${story.title}原网页图片`} />
               <div className="story-copy"><h2>{story.title}</h2><p><span>{story.source} · {story.region} {story.emoji}</span><b className={isStrongLevel(story.level) ? "strong" : ""}><Check size={12} weight="bold" />{story.level}</b></p></div>
             </article>
