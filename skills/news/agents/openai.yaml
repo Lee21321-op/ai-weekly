@@ -1,0 +1,4 @@
+interface:
+  display_name: "NEWS"
+  short_description: "核验 AI 资讯，复用网站模板与结构化数据，按四步流程更新并部署"
+  default_prompt: "Use $news to search and verify AI news, update the existing data-driven website template, and deploy with consolidated checks; choose styling independently only for a first build or requested redesign."
